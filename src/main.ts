@@ -1,10 +1,13 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
-import { router } from "./router";
-import { setupStore } from "./store";
+import { createApp } from 'vue';
+import './style.css';
+import App from './App.vue';
+import { router } from './router';
+import { setupStore } from './store';
+import ElementPlus from 'element-plus';
+import 'element-plus/dist/index.css';
 
 const app = createApp(App);
-setupStore(app)
-app.use(router)
-app.mount('#app')
+setupStore(app);
+app.use(router);
+app.use(ElementPlus);
+app.mount('#app');

@@ -1,4 +1,5 @@
 node 22.12+
 
-base
-pnpm i
+```bash
+pnpm install
+pnpm dev
