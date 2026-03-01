@@ -1,12 +1,17 @@
 <script setup lang="ts">
-import { definePage } from 'vite-plugin-pages'
-definePage({
-  meta: {
-    title: '首页',
-  },
-});
+
 </script>
 
-<template></template>
+<route>
+{
+  meta: {
+    title: '首页'
+  }
+}
+</route>
+
+<template>
+  <div>123</div>
+</template>
 
 <style scoped lang="less"></style>

@@ -12,9 +12,19 @@ export default defineConfig({
     Pages({
       dirs: 'src/pages',
       extensions: ['vue'],
-      onRoutesGenerated(routes) {
-        console.log('Generated routes:', JSON.stringify(routes, null, 2))
-      }
+      exclude: ["**/components/*.vue"],
+      // onRoutesGenerated(routes) {
+      //   console.log('Generated routes:', JSON.stringify(routes, null, 2))
+      // },
+      // extendRoute(route) {
+      //   if (route.path === '/') {
+      //     return {
+      //       ...route,
+      //       redirect: '/home'
+      //     }
+      //   }
+      //   return route
+      // }
     }),
     Layout({
       layoutsDirs: ['src/layouts'],
