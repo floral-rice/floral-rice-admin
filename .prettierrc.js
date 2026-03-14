@@ -1,9 +1,9 @@
-module.exports = {
-  arrowParens: 'avoid',
+export default {
+  arrowParens: "avoid",
   printWidth: 120,
   tabWidth: 2,
   useTabs: false,
   semi: true,
   bracketSpacing: true,
-  htmlWhitespaceSensitivity: 'css',
-}
+  htmlWhitespaceSensitivity: "css",
+};
