@@ -1,12 +1,12 @@
-<script setup lang="ts"></script>
-
 <route>
 {
   meta: {
-    title: '首页'
+    "title": "首页"
   }
 }
 </route>
+
+<script setup lang="ts"></script>
 
 <template>
   <div>123</div>

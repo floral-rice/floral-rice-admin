@@ -1,12 +1,48 @@
-import { defineConfig, mergeConfig } from "vite";
-import baseConfig from './src/config/base.config.js'
-import devconfig from './src/config/dev.config.js'
-import proConfig from './src/config/pro.confing.js'
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import Pages from "vite-plugin-pages";
+import Layout from "vite-plugin-vue-layouts";
+import * as path from "node:path";
+// import eslint from 'vite-plugin-eslint'
 
 // https://vite.dev/config/
 export default defineConfig(({ command }) => {
-  if (command === 'serve') {
-    return mergeConfig(baseConfig, devconfig)
-  }
-  return mergeConfig(baseConfig, proConfig)
+  return {
+    plugins: [
+      vue(),
+      Pages({
+        dirs: "src/pages",
+        extensions: ["vue"],
+        exclude: ["**/components/*.vue"],
+        // onRoutesGenerated(routes) {
+        //   console.log('Generated routes:', JSON.stringify(routes, null, 2))
+        // },
+        // extendRoute(route) {
+        //   if (route.path === '/') {
+        //     return {
+        //       ...route,
+        //       redirect: '/home'
+        //     }
+        //   }
+        //   return route
+        // }
+      }),
+      Layout({
+        layoutsDirs: ["src/layouts"],
+        defaultLayout: "basic-layout",
+      }),
+      // eslint({
+      //   cache: false,
+      //   include: ['src/**/*.ts', 'src/**/*.tsx', 'src/**/*.vue'],
+      //   failOnError: false,   // ❌ 不会因 error 阻断 dev
+      //   failOnWarning: false, // ⚠️ warning 也不阻断 dev
+      // })
+    ],
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, "src"),
+      },
+    },
+    define: {},
+  };
 });
