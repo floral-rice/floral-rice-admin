@@ -6,7 +6,8 @@
 }
 </route>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+</script>
 
 <template>
   <div>123</div>
