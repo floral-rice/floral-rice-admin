@@ -3,6 +3,7 @@ import vue from 'eslint-plugin-vue'
 import tseslint from 'typescript-eslint'
 import vueParser from 'vue-eslint-parser'
 import path from 'node:path'
+import globals from 'globals'
 
 const tsconfigRootDir = path.resolve()
 
@@ -22,6 +23,15 @@ export default [
 
   // JS 推荐规则
   js.configs.recommended,
+
+  {
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
+    },
+  },
 
   // TypeScript type-checked 推荐规则
   ...tseslint.configs.recommendedTypeChecked.map(config => ({
