@@ -2,7 +2,7 @@
 
 <template>
   <div class="blank-layout">
-    <slot />
+    <router-view />
   </div>
 </template>
 
