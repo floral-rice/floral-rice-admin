@@ -2,7 +2,7 @@
 name: login
 meta:
   title: 登录
-layout: blank-layout
+  layout: blank-layout
 </route>
 
 <script setup lang="ts"></script>
