@@ -13,9 +13,9 @@ export function getBaseConfig(): UserConfig {
         dirs: "src/pages",
         extensions: ["vue"],
         exclude: ["**/components/*.vue"],
-        // onRoutesGenerated(routes) {
-        //   console.log('Generated routes:', JSON.stringify(routes, null, 2))
-        // },
+        onRoutesGenerated(routes) {
+          console.log('Generated routes:', JSON.stringify(routes, null, 2))
+        },
         // extendRoute(route) {
         //   if (route.path === '/') {
         //     return {
