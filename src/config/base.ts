@@ -2,11 +2,11 @@ import { UserConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import Pages from "vite-plugin-pages";
 import Layout from "vite-plugin-vue-layouts";
-import * as path from "node:path";
 // import eslint from 'vite-plugin-eslint'
 
 export function getBaseConfig(): UserConfig {
   return {
+    base: '/',
     plugins: [
       vue(),
       Pages({
@@ -38,9 +38,9 @@ export function getBaseConfig(): UserConfig {
       // })
     ],
     resolve: {
-      alias: [
-        { find: "@", replacement: path.resolve(__dirname, "src") },
-      ],
+      alias: {
+        "@": '/src',
+      },
     },
     define: {},
   };
