@@ -6,7 +6,7 @@ import Layout from "vite-plugin-vue-layouts";
 
 export function getBaseConfig(): UserConfig {
   return {
-    base: '/',
+    base: "/",
     plugins: [
       vue(),
       Pages({
@@ -39,9 +39,11 @@ export function getBaseConfig(): UserConfig {
     ],
     resolve: {
       alias: {
-        "@": '/src',
+        "@": "/src",
       },
     },
-    define: {},
+    optimizeDeps: {
+      include: ["lodash-es"],
+    },
   };
 }
