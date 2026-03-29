@@ -51,9 +51,7 @@ interface UseRequestOptions<T, P extends any[]> {
  * @returns
  */
 export function useRequest<
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   T = any,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   P extends any[] = any[],
 >(request: RequestFn<T, P>, options: UseRequestOptions<T, P> = {}) {
   const {
@@ -66,7 +64,6 @@ export function useRequest<
     loadingState = true,
     toast = false,
     manual = true,
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
     defaultData = null as any,
     refreshDeps = [],
     lock = false,
@@ -77,7 +74,6 @@ export function useRequest<
   const mounted = ref(false);
   const fetchId = ref(0);
   const lockRef = ref(false);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let loadingInstance: any = null;
 
   /** 开始 */

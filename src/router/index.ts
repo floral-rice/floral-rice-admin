@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import generatedRoutes from "virtual:generated-pages";
 import { setupLayouts } from "virtual:generated-layouts";
 import { TOKEN } from "../constant";
+import { getToken } from "@/utils";
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -15,7 +16,7 @@ router.beforeEach((to, from, next) => {
     next();
     return;
   }
-  const token = localStorage.getItem(TOKEN);
+  const token = getToken();
 
   if (!token) {
     next("/login");

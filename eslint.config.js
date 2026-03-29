@@ -78,19 +78,17 @@ export default [
       '@typescript-eslint/no-unsafe-call': 'warn',
       '@typescript-eslint/no-unsafe-member-access': 'warn',
       '@typescript-eslint/no-unsafe-argument': 'warn',
-
       // 关闭默认 JS unused-vars，TS 用 warn
       'no-unused-vars': 'off',
       '@typescript-eslint/no-unused-vars': ['warn', { varsIgnorePattern: '^_', argsIgnorePattern: '^_' }],
-
       // Vue 模板绑定变量检查
       'vue/no-unused-vars': 'warn',
-      
       // Vue 组件命名规则：允许单字组件名（如 index.vue）
       'vue/multi-word-component-names': 'off',
-      
       // Vue 模板根节点规则：允许多个根节点（Vue 3 支持）
       'vue/valid-template-root': 'off',
+      // 不允许使用 any
+      '@typescript-eslint/no-explicit-any': 'warn',
     },
   },
 ]
