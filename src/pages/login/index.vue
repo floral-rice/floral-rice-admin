@@ -19,7 +19,7 @@ meta:
   </div>
 </template>
 
-<style scoped lang="less">
+<style scoped lang="scss">
 .login-container {
   width: 100%;
   height: 100%;

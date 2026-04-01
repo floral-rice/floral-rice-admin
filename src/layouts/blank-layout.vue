@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<style scoped lang="less">
+<style scoped lang="scss">
 .blank-layout {
   width: 100%;
   height: 100%;
