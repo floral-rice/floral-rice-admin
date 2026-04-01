@@ -1,11 +1,11 @@
-import js from '@eslint/js'
-import vue from 'eslint-plugin-vue'
-import tseslint from 'typescript-eslint'
-import vueParser from 'vue-eslint-parser'
-import path from 'node:path'
-import globals from 'globals'
+import js from '@eslint/js';
+import vue from 'eslint-plugin-vue';
+import tseslint from 'typescript-eslint';
+import vueParser from 'vue-eslint-parser';
+import path from 'node:path';
+import globals from 'globals';
 
-const tsconfigRootDir = path.resolve()
+const tsconfigRootDir = path.resolve();
 
 export default [
   // 忽略的文件
@@ -91,4 +91,4 @@ export default [
       '@typescript-eslint/no-explicit-any': 'warn',
     },
   },
-]
+];
