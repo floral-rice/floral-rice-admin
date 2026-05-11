@@ -1,7 +1,7 @@
 import { UserConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import Pages from "vite-plugin-pages";
-import Layout from "vite-plugin-vue-layouts";
+import { ClientSideLayout } from "vite-plugin-vue-layouts";
 // import eslint from 'vite-plugin-eslint'
 
 export function getBaseConfig(): UserConfig {
@@ -26,8 +26,8 @@ export function getBaseConfig(): UserConfig {
         //   return route
         // }
       }),
-      Layout({
-        layoutsDirs: ["src/layouts"],
+      ClientSideLayout({
+        layoutDir: "src/layouts",
         defaultLayout: "BasicLayout",
       }),
       // eslint({

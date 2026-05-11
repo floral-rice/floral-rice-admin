@@ -1,12 +1,12 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
   <div class="basic-layout">
-    <basic-header />
+    <base-header />
     <router-view />
   </div>
 </template>
+
+<script setup lang="ts">
+  import BaseHeader from './components/BaseHeader/index.vue';
+</script>
 
 <style scoped lang="scss"></style>

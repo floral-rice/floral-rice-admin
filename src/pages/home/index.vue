@@ -7,7 +7,7 @@ meta:
 <script setup lang="ts"></script>
 
 <template>
-  <div>123</div>
+  <div>Home</div>
 </template>
 
 <style scoped lang="scss"></style>
