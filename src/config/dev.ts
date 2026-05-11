@@ -1,7 +1,15 @@
-import { UserConfig } from "vite";
+import { UserConfig } from 'vite';
 
 export function getDevConfig(): UserConfig {
   return {
-    define: {},
+    server: {
+      // proxy: {
+      //   '/api': {
+      //     target: 'http://localhost:8081',
+      //     changeOrigin: true,
+      //     rewrite: path => path,
+      //   },
+      // },
+    },
   };
 }

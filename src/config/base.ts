@@ -28,7 +28,7 @@ export function getBaseConfig(): UserConfig {
       }),
       Layout({
         layoutsDirs: ["src/layouts"],
-        defaultLayout: "basic-layout",
+        defaultLayout: "BasicLayout",
       }),
       // eslint({
       //   cache: false,
