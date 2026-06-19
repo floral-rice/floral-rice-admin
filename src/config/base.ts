@@ -29,6 +29,7 @@ export function getBaseConfig(): UserConfig {
       ClientSideLayout({
         layoutDir: "src/layouts",
         defaultLayout: "BasicLayout",
+        importMode: "sync",
       }),
       // eslint({
       //   cache: false,

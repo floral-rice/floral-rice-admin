@@ -11,15 +11,14 @@ meta:
   import { Login } from '@/typing/login';
   import { FormInstance, FormRules } from 'element-plus';
   import { ref, reactive } from 'vue';
-  import { useUserStore } from '@/store//index';
   import { useRouter, useRoute } from 'vue-router';
+  import { setToken } from '@/utils';
 
   const formRef = ref<FormInstance>();
   const formData = ref<Login>({
     account: '',
     password: '',
   });
-  const userStore = useUserStore();
   const router = useRouter();
   const route = useRoute();
 
@@ -46,7 +45,9 @@ meta:
 
   const { run, loading } = useRequest(login, {
     onSuccess: res => {
-      userStore.setUser(res.data);
+      if (res.data.token) {
+        setToken(res.data.token);
+      }
       goTo();
     },
   });
