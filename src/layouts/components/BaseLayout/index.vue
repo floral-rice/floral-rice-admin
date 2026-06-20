@@ -41,25 +41,45 @@
 
   const normalizePath = (path: string) => path.replace(/\/+$/, '') || '';
 
-  const findMenuByPath = (menus: Menu[], path: string): Menu | undefined => {
-    const normalizedPath = normalizePath(path);
+  const collectLeaves = (menus: Menu[], result: Menu[] = []): Menu[] => {
     for (const menu of menus) {
       if (menu.children?.length) {
-        const found = findMenuByPath(menu.children, path);
-        if (found) return found;
-      } else if (menu.path && normalizePath(menu.path) === normalizedPath) {
-        return menu;
+        collectLeaves(menu.children, result);
+      } else if (menu.path) {
+        result.push(menu);
       }
     }
-    return undefined;
+    return result;
+  };
+
+  /** 通过 route.matched 查找菜单（支持 _layout 嵌套路由） */
+  const findActiveMenu = (menus: Menu[]): Menu | undefined => {
+    const leaves = collectLeaves(menus);
+    const currentPath = normalizePath(route.path);
+
+    // 1. 精确匹配
+    const exact = leaves.find(m => normalizePath(m.path!) === currentPath);
+    if (exact) return exact;
+
+    // 2. 通过 route.matched 匹配（_layout 嵌套路由场景）
+    for (let i = route.matched.length - 1; i >= 0; i--) {
+      const matched = route.matched[i];
+      const menu = leaves.find(m => normalizePath(m.path!) === normalizePath(matched.path));
+      if (menu) return menu;
+    }
+
+    // 3. 前缀匹配兜底
+    return leaves
+      .filter(m => currentPath.startsWith(normalizePath(m.path!) + '/'))
+      .sort((a, b) => (b.path?.length ?? 0) - (a.path?.length ?? 0))[0];
   };
 
   const activeMenu = ref<Menu | undefined>();
   const tabs = ref<Menu[]>([]);
   const route = useRoute();
 
-  const syncActiveMenu = (path: string) => {
-    const menu = findMenuByPath(filteredMenus.value, path);
+  const syncActiveMenu = () => {
+    const menu = findActiveMenu(filteredMenus.value);
     if (menu) {
       activeMenu.value = menu;
       const hasOpen = tabs.value.some(item => item.path === menu.path);
@@ -72,12 +92,12 @@
   // 监听路由变化
   watch(
     () => route.path,
-    newPath => syncActiveMenu(newPath),
+    () => syncActiveMenu(),
     { immediate: true }
   );
 
   // 监听 filteredMenus 变化（权限加载后触发）
-  // watch(filteredMenus, () => syncActiveMenu(route.path));
+  watch(filteredMenus, () => syncActiveMenu());
 
   const onNavigate = (menu: Menu) => {
     if (!menu.path) return;
