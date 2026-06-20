@@ -3,3 +3,11 @@ export interface Response<T> {
   data: T;
   message: string;
 }
+
+export interface Menu {
+  name: string;
+  path?: string;
+  children?: Menu[];
+  icon?: string;
+  authority?: string | string[]
+}

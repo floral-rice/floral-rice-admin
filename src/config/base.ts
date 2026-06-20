@@ -13,29 +13,12 @@ export function getBaseConfig(): UserConfig {
         dirs: "src/pages",
         extensions: ["vue"],
         exclude: ["**/components/*.vue"],
-        // onRoutesGenerated(routes) {
-        //   console.log('Generated routes:', JSON.stringify(routes, null, 2))
-        // },
-        // extendRoute(route) {
-        //   if (route.path === '/') {
-        //     return {
-        //       ...route,
-        //       redirect: '/home'
-        //     }
-        //   }
-        //   return route
-        // }
       }),
       ClientSideLayout({
         layoutDir: "src/layouts",
         defaultLayout: "BasicLayout",
+        importMode: "sync",
       }),
-      // eslint({
-      //   cache: false,
-      //   include: ['src/**/*.ts', 'src/**/*.tsx', 'src/**/*.vue'],
-      //   failOnError: false,   // ❌ 不会因 error 阻断 dev
-      //   failOnWarning: false, // ⚠️ warning 也不阻断 dev
-      // })
     ],
     resolve: {
       alias: {
