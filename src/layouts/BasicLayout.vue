@@ -66,6 +66,26 @@
             },
           ],
         },
+        {
+          name: '用户',
+          children: [
+            {
+              name: '用户管理',
+              path: '/user/list',
+              authority: '设置-用户-用户管理-查询',
+            },
+            {
+              name: '角色管理',
+              path: '/user/role-list',
+              authority: '设置-用户-角色管理-查询',
+            },
+            {
+              name: '权限管理',
+              path: '/user/auth-list',
+              authority: '设置-用户-权限管理-查询',
+            },
+          ],
+        },
       ],
     },
     // {
