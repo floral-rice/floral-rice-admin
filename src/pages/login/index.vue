@@ -11,10 +11,12 @@ meta:
   import { Login } from '@/typing/login';
   import { FormInstance, FormRules } from 'element-plus';
   import { User, Lock } from '@element-plus/icons-vue';
-  import { ref, reactive } from 'vue';
+  import { ref, reactive, onMounted } from 'vue';
   import { useRouter, useRoute } from 'vue-router';
   import { setToken } from '@/utils';
   import logo from '@/assets/imgs/logo.png';
+
+  const REMEMBER_KEY = 'LOGIn_REMEMBER';
 
   const formRef = ref<FormInstance>();
   const rememberMe = ref(false);
@@ -24,6 +26,20 @@ meta:
   });
   const router = useRouter();
   const route = useRoute();
+
+  // 页面加载时，从 localStorage 恢复记住的账号密码
+  onMounted(() => {
+    const saved = localStorage.getItem(REMEMBER_KEY);
+    if (saved) {
+      try {
+        const { account, password } = JSON.parse(saved) as Login;
+        formData.value = { account, password };
+        rememberMe.value = true;
+      } catch {
+        // ignore malformed data
+      }
+    }
+  });
 
   const rules = reactive<FormRules<Login>>({
     account: [{ required: true, message: '请输入用户账号', trigger: 'blur' }],
@@ -46,6 +62,12 @@ meta:
     onSuccess: res => {
       if (res.data.token) {
         setToken(res.data.token);
+      }
+      // 记住密码：勾选则保存，未勾选则清除
+      if (rememberMe.value) {
+        localStorage.setItem(REMEMBER_KEY, JSON.stringify(formData.value));
+      } else {
+        localStorage.removeItem(REMEMBER_KEY);
       }
       goTo();
     },
